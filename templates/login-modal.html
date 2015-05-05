@@ -1,0 +1,86 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+    <div class="list">
+		<li class="item item-toggle">
+	     New Account?
+	     <label class="toggle toggle-positive">
+	       <input type="checkbox" ng-model="NewAccount">
+	       <div class="track">
+	         <div class="handle"></div>
+	       </div>
+	     </label>
+	  </li>
+		
+		<!-- New Account -->
+		<form ng-show="NewAccount" novalidate name="CreateAccount" ng-submit="CreateNewAccount(User)">
+			<h4>Create Account</h4>
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Username</span>
+				<input ng-model="User.username" name="username" type="text" placeholder="Required" required="">
+			</label>
+
+			<div ng-show="CreateAccount.$submitted || CreateAccount.username.$touched">
+		      <span ng-show="CreateAccount.username.$error.required">Please provide a username.</span>
+		    </div>
+
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Password</span>
+				<input ng-model="User.password" name="password" type="password" placeholder="Required" required="">
+			</label>
+
+			<div ng-show="CreateAccount.$submitted || CreateAccount.password.$touched">
+		      <span ng-show="CreateAccount.password.$error.required">Please provide a password.</span>
+		    </div>
+
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Email Address</span>
+				<input ng-model="User.email" name="emailadd" type="email" placeholder="Required" required="">
+			</label>
+
+			<div ng-show="CreateAccount.$submitted || CreateAccount.emailadd.$touched">
+		      <span ng-show="CreateAccount.emailadd.$error.required">Please provide an email address.</span>
+		      <span ng-show="CreateAccount.emailadd.$error.email">This is not a valid email.</span>
+		    </div>
+
+			<button ng-show="CreateAccount.$valid" type="submit" class="button button-outline button-positive button-block">
+			  Create Account
+			</button>
+		</form>
+
+		<!-- Log in -->
+
+		<form ng-hide="NewAccount" novalidate name="LoginForm" ng-submit="LoginAccount(User)">
+			<h4>Log In</h4>
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Username</span>
+				<input ng-model="User.username" name="username" type="text" placeholder="Required" required="">
+			</label>
+
+			<div ng-show="LoginForm.$submitted || LoginForm.username.$touched">
+		      <span ng-show="LoginForm.username.$error.required">Please provide a username.</span>
+		    </div>
+
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">Password</span>
+				<input ng-model="User.password" name="password" type="password" placeholder="Required" required="">
+			</label>
+
+			<div ng-show="LoginForm.$submitted || LoginForm.password.$touched">
+		      <span ng-show="LoginForm.password.$error.required">Please provide a password.</span>
+		    </div>
+
+			<button ng-show="LoginForm.$valid" type="submit" class="button button-outline button-positive button-block">
+			  Log In
+			</button>
+		</form>
+
+	</div>
+
+  </ion-content>
+</ion-modal-view>

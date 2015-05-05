@@ -1,0 +1,45 @@
+<ion-view view-title="Latest Photos">
+  <ion-content class="">
+  	<ion-refresher
+		    pulling-text="Pull to refresh..."
+		    on-refresh="Refresh()">
+		  </ion-refresher>
+    <ion-list>
+
+      <!-- <a ng-repeat="fav in Photos" class="item item-thumbnail-left" href="#">
+        <img src="cover.jpg">
+        <h2>{{fav.Name}}</h2>
+        <p>{{fav.Country}}</p>
+      </a> -->
+
+		  <div class="item item-input-inset">
+		    <label class="item-input-wrapper">
+		      <input type="text" placeholder="Search for a surf spot" ng-model="SearchQuery">
+		    </label>
+		    <button class="button button-small" ng-click="FindSpot(SearchQuery)">
+		      Search
+		    </button>
+		  </div>
+
+      <div class="list card" ng-repeat="photo in Photos | orderBy:'id':true">
+
+		  <div class="item item-avatar">
+		    <img src="{{photo.src}}">
+		    <h2>{{photo.break | toTitleCase}}</h2>
+		    <p>{{photo.date | date:'medium'}}</p>
+		    <p class="nameBadge">{{photo.user}}</p>
+		  </div>
+
+		  <div class="item item-image">
+		    <img src="{{photo.src}}">
+		  </div>
+
+		  <a ng-hide="{{photo.comment.length < 1}}" class="item assertive" href="#">
+		    {{photo.comment}}
+		  </a>
+
+		</div>
+
+    </ion-list>
+  </ion-content>
+</ion-view>
